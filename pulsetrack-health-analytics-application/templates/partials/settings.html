@@ -1,0 +1,73 @@
+          <!-- ===================== SETTINGS ===================== -->
+          <section class="page" id="page-settings" data-page="settings">
+            <div class="grid">
+              <div class="card col-6">
+                <div class="card-head">
+                  <div><h3>Appearance</h3><p>Choose how PulseTrack looks — saved instantly</p></div>
+                </div>
+                <div class="theme-picker" id="theme-picker">
+                  <button class="theme-card" data-theme-choice="dark">
+                    <span class="theme-preview theme-preview-dark"><i></i><i></i><i></i></span>
+                    <strong>Dark</strong><small>Midnight surfaces</small>
+                  </button>
+                  <button class="theme-card" data-theme-choice="light">
+                    <span class="theme-preview theme-preview-light"><i></i><i></i><i></i></span>
+                    <strong>Light</strong><small>Clean daylight</small>
+                  </button>
+                  <button class="theme-card" data-theme-choice="system">
+                    <span class="theme-preview theme-preview-system"><i></i><i></i><i></i></span>
+                    <strong>System</strong><small>Follow device</small>
+                  </button>
+                </div>
+                <div class="setting-row">
+                  <div><strong>Accent colour</strong><p>Highlight used across charts and controls.</p></div>
+                  <div class="accent-row" id="accent-row">
+                    <button class="accent-dot is-active" data-accent="#34d399" style="--c:#34d399"></button>
+                    <button class="accent-dot" data-accent="#38bdf8" style="--c:#38bdf8"></button>
+                    <button class="accent-dot" data-accent="#a78bfa" style="--c:#a78bfa"></button>
+                    <button class="accent-dot" data-accent="#fb923c" style="--c:#fb923c"></button>
+                    <button class="accent-dot" data-accent="#f472b6" style="--c:#f472b6"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card col-6">
+                <div class="card-head">
+                  <div><h3>Storage</h3><p>Health records are persisted in the local SQLite database</p></div>
+                </div>
+                <div class="stat-strip" id="settings-stats"></div>
+                <div class="setting-row">
+                  <div><strong>Clear all data</strong><p>Removes every record and resets the linked list.</p></div>
+                  <button class="btn btn-danger" id="clear-data"><i data-lucide="trash-2"></i> Clear</button>
+                </div>
+                <div class="setting-row">
+                  <div><strong>Load sample data</strong><p>Populate the list with 30 demo records.</p></div>
+                  <button class="btn btn-soft" id="seed-data"><i data-lucide="zap"></i> Load</button>
+                </div>
+                <div class="setting-row">
+                  <div><strong>Last saved</strong><p id="setting-last-saved">—</p></div>
+                  <span class="pill pill-ok"><i data-lucide="shield-check"></i> Auto-save on</span>
+                </div>
+              </div>
+
+              <div class="card col-12">
+                <div class="card-head">
+                  <div><h3>About PulseTrack</h3><p>Health analytics with dependable local data management</p></div>
+                </div>
+                <div class="about-grid">
+                  <div><span class="about-icon"><i data-lucide="git-branch"></i></span><strong>Circular Linked List</strong><p>The backend record manager. Every change updates the live circular list and SQLite, and the list is rebuilt from SQLite on startup.</p></div>
+                  <div><span class="about-icon"><i data-lucide="binary"></i></span><strong>Circular pointers</strong><p>Appending relinks the tail and new node in O(1); checking a unique date makes the complete insert O(n).</p></div>
+                  <div><span class="about-icon"><i data-lucide="zap"></i></span><strong>Reliable storage</strong><p>Flask APIs and SQLite keep health records available across sessions. Chart.js powers analytics, with Lucide icons throughout.</p></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="footer">
+          <span>PulseTrack · Health Metrics &amp; Data Structure Intelligence System</span>
+          <span class="footer-right">Circular Linked List · SQLite · Flask</span>
+        </footer>
+      </div>
+    </div>
+

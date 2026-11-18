@@ -1,0 +1,59 @@
+          <!-- ===================== EXPORT ===================== -->
+          <section class="page" id="page-export" data-page="export">
+            <div class="grid">
+              <div class="card col-6">
+                <div class="card-head">
+                  <div><h3>Export data</h3><p>Download your records for analysis or archiving</p></div>
+                </div>
+                <div class="export-options">
+                  <button class="export-tile" id="export-csv">
+                    <span class="export-icon" style="--c:#34d399"><i data-lucide="file-spreadsheet"></i></span>
+                    <div><strong>Export CSV</strong><p>Comma separated values for Excel, Sheets or pandas.</p></div>
+                    <i data-lucide="download" class="export-go"></i>
+                  </button>
+                  <button class="export-tile" id="export-json">
+                    <span class="export-icon" style="--c:#38bdf8"><i data-lucide="file-json"></i></span>
+                    <div><strong>Export JSON</strong><p>Structured payload with metadata for a full restore.</p></div>
+                    <i data-lucide="download" class="export-go"></i>
+                  </button>
+                  <button class="export-tile" id="download-backup">
+                    <span class="export-icon" style="--c:#a78bfa"><i data-lucide="database-backup"></i></span>
+                    <div><strong>Download backup</strong><p>Timestamped snapshot of the complete list.</p></div>
+                    <i data-lucide="download" class="export-go"></i>
+                  </button>
+                </div>
+                <div class="stat-strip" id="export-stats"></div>
+              </div>
+
+              <div class="card col-6">
+                <div class="card-head">
+                  <div><h3>Import &amp; restore</h3><p>Bring records back from a JSON backup</p></div>
+                </div>
+                <div class="drop-zone" id="import-drop">
+                  <i data-lucide="upload"></i>
+                  <strong>Drop a JSON file here</strong>
+                  <span>or</span>
+                  <label class="btn btn-soft" for="import-file"><i data-lucide="folder-open"></i> Choose file</label>
+                  <input type="file" id="import-file" accept="application/json,.json" hidden />
+                </div>
+                <div class="field">
+                  <label for="import-text">…or paste JSON</label>
+                  <textarea id="import-text" class="input textarea" rows="6" placeholder='{ "records": [ { "date": "2026-01-05", "steps": 8200, "calories": 2100, "sleep": 7.5 } ] }'></textarea>
+                </div>
+                <div class="import-actions">
+                  <button class="btn btn-primary" id="import-run"><i data-lucide="database-backup"></i> Validate &amp; restore</button>
+                  <button class="btn btn-ghost" id="import-sample"><i data-lucide="zap"></i> Load sample data</button>
+                </div>
+                <div class="import-result" id="import-result" hidden></div>
+              </div>
+
+              <div class="card col-12">
+                <div class="card-head">
+                  <div><h3>Backup preview</h3><p>First records of the current list</p></div>
+                  <button class="link-btn" id="export-preview-refresh"><i data-lucide="refresh-cw"></i> Refresh</button>
+                </div>
+                <pre class="code-block" id="export-preview"></pre>
+              </div>
+            </div>
+          </section>
+

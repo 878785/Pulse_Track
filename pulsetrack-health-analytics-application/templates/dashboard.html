@@ -1,0 +1,4 @@
+{% include "index.html" %}
+<script>
+  if (!window.location.hash) window.location.hash = {{ initial_page|tojson }};
+</script>

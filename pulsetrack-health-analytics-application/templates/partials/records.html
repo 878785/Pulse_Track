@@ -1,0 +1,67 @@
+          <!-- ===================== RECORDS ===================== -->
+          <section class="page" id="page-records" data-page="records">
+            <div class="card">
+              <div class="card-head card-head-wrap">
+                <div>
+                  <h3>Health records</h3>
+                  <p id="records-count-label">0 records stored</p>
+                </div>
+                <div class="toolbar">
+                  <div class="search-field">
+                    <i data-lucide="search"></i>
+                    <input type="search" id="record-search" placeholder="Search date or metrics…" autocomplete="off" />
+                  </div>
+                  <select id="record-sort" class="select">
+                    <option value="date-desc">Date · newest</option>
+                    <option value="date-asc">Date · oldest</option>
+                    <option value="steps-desc">Steps · high to low</option>
+                    <option value="steps-asc">Steps · low to high</option>
+                    <option value="calories-desc">Calories · high to low</option>
+                    <option value="calories-asc">Calories · low to high</option>
+                    <option value="sleep-desc">Sleep · high to low</option>
+                    <option value="sleep-asc">Sleep · low to high</option>
+                  </select>
+                  <button class="icon-btn" id="record-sort-dir" title="Toggle sort direction"><i data-lucide="chevron-up"></i></button>
+                  <input type="date" id="record-from" class="input input-date" title="From date" />
+                  <input type="date" id="record-to" class="input input-date" title="To date" />
+                  <button class="icon-btn" id="record-reset" title="Reset filters"><i data-lucide="rotate-ccw"></i></button>
+                  <button class="btn btn-primary" data-action="open-add"><i data-lucide="plus"></i><span>Add record</span></button>
+                </div>
+              </div>
+
+              <div class="table-wrap" id="records-table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Date</th>
+                      <th>Steps</th>
+                      <th>Calories</th>
+                      <th>Sleep</th>
+                      <th class="right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="records-body"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="records-empty" hidden>
+                <span class="empty-icon"><i data-lucide="clipboard-list"></i></span>
+                <h4>No records found</h4>
+                <p id="records-empty-text">Add your first health record to start building the circular linked list.</p>
+                <button class="btn btn-primary" data-action="open-add"><i data-lucide="plus"></i> Add record</button>
+              </div>
+              <div class="table-footer" id="records-footer">
+                <div class="page-size">
+                  <label for="records-per-page">Rows</label>
+                  <select id="records-per-page" class="select select-sm">
+                    <option value="8">8</option>
+                    <option value="12" selected>12</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+                <div class="pager" id="records-pager"></div>
+              </div>
+            </div>
+          </section>
+

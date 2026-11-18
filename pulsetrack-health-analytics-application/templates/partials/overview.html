@@ -1,0 +1,161 @@
+          <!-- ===================== OVERVIEW ===================== -->
+          <section class="page is-active" id="page-overview" data-page="overview">
+            <div class="hero">
+              <div class="hero-text">
+                <span class="eyebrow"><i data-lucide="sparkle"></i> <span id="hero-greeting">Good morning</span></span>
+                <h2 id="hero-title">Your body, in data.</h2>
+                <p id="hero-sub">Track steps, calories and sleep with a persistent SQLite database and a live circular linked list.</p>
+                <div class="hero-actions">
+                  <button class="btn btn-primary" data-action="open-add"><i data-lucide="plus"></i> Add today's record</button>
+                  <button class="btn btn-ghost" data-nav-jump="visualizer"><i data-lucide="git-branch"></i> Data structure details</button>
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div class="hero-ring" id="hero-ring"><span id="hero-ring-value">0</span><small>records</small></div>
+                <div class="hero-side">
+                  <span class="streak-pill" id="hero-streak"><i data-lucide="zap"></i><strong>0</strong> day streak</span>
+                  <div class="hero-bars" id="hero-bars"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="kpi-grid">
+              <article class="kpi-card" style="--kpi:#34d399">
+                <div class="kpi-top">
+                  <span class="kpi-icon"><i data-lucide="footprints"></i></span>
+                  <span class="kpi-delta" id="kpi-steps-delta">—</span>
+                </div>
+                <p class="kpi-label">Steps recorded</p>
+                <h3 class="kpi-value" id="kpi-steps-value">0</h3>
+                <div class="kpi-spark" id="kpi-steps-spark"></div>
+                <p class="kpi-foot" id="kpi-steps-foot">Total across all records</p>
+              </article>
+              <article class="kpi-card" style="--kpi:#fb923c">
+                <div class="kpi-top">
+                  <span class="kpi-icon"><i data-lucide="flame"></i></span>
+                  <span class="kpi-delta" id="kpi-calories-delta">—</span>
+                </div>
+                <p class="kpi-label">Calories recorded</p>
+                <h3 class="kpi-value" id="kpi-calories-value">0</h3>
+                <div class="kpi-spark" id="kpi-calories-spark"></div>
+                <p class="kpi-foot" id="kpi-calories-foot">Total energy expenditure</p>
+              </article>
+              <article class="kpi-card" style="--kpi:#a78bfa">
+                <div class="kpi-top">
+                  <span class="kpi-icon"><i data-lucide="moon-star"></i></span>
+                  <span class="kpi-delta" id="kpi-sleep-delta">—</span>
+                </div>
+                <p class="kpi-label">Average sleep</p>
+                <h3 class="kpi-value" id="kpi-sleep-value">0h</h3>
+                <div class="kpi-spark" id="kpi-sleep-spark"></div>
+                <p class="kpi-foot" id="kpi-sleep-foot">Hours per recorded night</p>
+              </article>
+              <article class="kpi-card" style="--kpi:#38bdf8">
+                <div class="kpi-top">
+                  <span class="kpi-icon"><i data-lucide="database"></i></span>
+                  <span class="kpi-delta" id="kpi-records-delta">—</span>
+                </div>
+                <p class="kpi-label">Total records</p>
+                <h3 class="kpi-value" id="kpi-records-value">0</h3>
+                <div class="kpi-spark" id="kpi-records-spark"></div>
+                <p class="kpi-foot" id="kpi-records-foot">Nodes in the circular list</p>
+              </article>
+            </div>
+
+            <div class="grid">
+              <div class="card col-8">
+                <div class="card-head">
+                  <div>
+                    <h3>Steps trend</h3>
+                    <p>Recorded steps for every stored day</p>
+                  </div>
+                  <div class="chip-row" id="overview-steps-range">
+                    <button class="chip is-active" data-range="14">14D</button>
+                    <button class="chip" data-range="30">30D</button>
+                    <button class="chip" data-range="all">All</button>
+                  </div>
+                </div>
+                <div class="chart-wrap"><canvas id="chart-overview-steps"></canvas></div>
+              </div>
+
+              <div class="card col-4">
+                <div class="card-head">
+                  <div>
+                    <h3>Activity mix</h3>
+                    <p>Share of your tracked metrics</p>
+                  </div>
+                </div>
+                <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-ring"></canvas></div>
+                <ul class="legend-list" id="overview-legend"></ul>
+              </div>
+
+              <div class="card col-4">
+                <div class="card-head">
+                  <div>
+                    <h3>Calories</h3>
+                    <p>Energy recorded per day</p>
+                  </div>
+                </div>
+                <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-calories"></canvas></div>
+              </div>
+
+              <div class="card col-4">
+                <div class="card-head">
+                  <div>
+                    <h3>Sleep duration</h3>
+                    <p>Hours of rest per night</p>
+                  </div>
+                </div>
+                <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-sleep"></canvas></div>
+              </div>
+
+              <div class="card col-4">
+                <div class="card-head">
+                  <div>
+                    <h3>This week</h3>
+                    <p>Steps by weekday</p>
+                  </div>
+                </div>
+                <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-week"></canvas></div>
+              </div>
+
+              <div class="card col-7">
+                <div class="card-head">
+                  <div>
+                    <h3>Recent records</h3>
+                    <p>Latest entries from the linked list</p>
+                  </div>
+                  <button class="link-btn" data-nav-jump="records">View all <i data-lucide="arrow-right"></i></button>
+                </div>
+                <div class="mini-table" id="overview-recent-list"></div>
+              </div>
+
+              <div class="card col-5">
+                <div class="card-head">
+                  <div>
+                    <h3>Activity timeline</h3>
+                    <p>Newest operations on the list</p>
+                  </div>
+                </div>
+                <ul class="timeline" id="overview-timeline"></ul>
+              </div>
+
+              <div class="card col-12">
+                <div class="card-head">
+                  <div>
+                    <h3>Quick actions</h3>
+                    <p>Common tasks, one click away</p>
+                  </div>
+                </div>
+                <div class="quick-grid">
+                  <button class="quick-tile" data-action="open-add"><span class="quick-icon"><i data-lucide="plus"></i></span><strong>Add record</strong><small>Store a new day</small></button>
+                  <button class="quick-tile" data-nav-jump="calendar"><span class="quick-icon"><i data-lucide="calendar-days"></i></span><strong>Calendar</strong><small>Find a date</small></button>
+                  <button class="quick-tile" data-nav-jump="analytics"><span class="quick-icon"><i data-lucide="chart-spline"></i></span><strong>Analytics</strong><small>Analyse trends</small></button>
+                  <button class="quick-tile" data-action="export-csv"><span class="quick-icon"><i data-lucide="file-spreadsheet"></i></span><strong>Export CSV</strong><small>Download data</small></button>
+                  <button class="quick-tile" data-nav-jump="visualizer"><span class="quick-icon"><i data-lucide="list-tree"></i></span><strong>Visualise list</strong><small>See the structure</small></button>
+                  <button class="quick-tile" data-nav-jump="export"><span class="quick-icon"><i data-lucide="database-backup"></i></span><strong>Backup</strong><small>Restore later</small></button>
+                </div>
+              </div>
+            </div>
+          </section>
+

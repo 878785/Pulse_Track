@@ -1,0 +1,90 @@
+          <!-- ===================== VISUALIZER ===================== -->
+          <section class="page" id="page-visualizer" data-page="visualizer">
+            <div class="grid">
+              <div class="card col-12">
+                <div class="card-head">
+                  <div><h3>How PulseTrack organizes health records</h3><p>The circular structure keeps sequential traversal connected from the tail back to the head; SQLite keeps each change persistent.</p></div>
+                </div>
+                <div class="about-grid">
+                  <div><strong>Node and pointers</strong><p>Each node stores its ID, date, steps, calories, sleep, and a next pointer. The head marks the first node; the tail marks the last.</p></div>
+                  <div><strong>Circular connection</strong><p>The tail’s next pointer returns to the head, including in the one-node case. Traversal stops after visiting each node once.</p></div>
+                  <div><strong>Record operations</strong><p>The backend list handles insertion, searching, updating, deletion and traversal. Add, search, update, delete and traversal are O(n) with date uniqueness checks; pointer relinking is O(1).</p></div>
+                </div>
+              </div>
+              <div class="card col-8 viz-card">
+                <div class="card-head card-head-wrap">
+                  <div>
+                    <h3>Circular Linked List</h3>
+                    <p>Live backend structure — each arrow represents a next pointer</p>
+                  </div>
+                  <div class="chip-row">
+                    <button class="chip chip-accent" id="viz-traverse"><i data-lucide="play"></i> Traverse</button>
+                    <button class="chip" id="viz-step"><i data-lucide="move-right"></i> Step</button>
+                    <button class="chip" id="viz-stop"><i data-lucide="x"></i> Stop</button>
+                  </div>
+                </div>
+                <div class="viz-stats">
+                  <div class="viz-stat"><span>Head</span><strong id="viz-head">—</strong></div>
+                  <div class="viz-stat"><span>Tail</span><strong id="viz-tail">—</strong></div>
+                  <div class="viz-stat"><span>Nodes</span><strong id="viz-count">0</strong></div>
+                  <div class="viz-stat"><span>Current</span><strong id="viz-current">—</strong></div>
+                </div>
+                <div class="viz-canvas" id="viz-canvas-wrap">
+                  <svg id="viz-svg" viewBox="0 0 960 560" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Circular linked list visualisation"></svg>
+                  <div class="viz-empty" id="viz-empty">
+                    <i data-lucide="git-branch"></i>
+                    <p>The list is empty — insert a node to begin.</p>
+                  </div>
+                </div>
+                <div class="viz-status" id="viz-status"><i data-lucide="circle-dot"></i><span>Ready. Press Traverse to animate the traversal.</span></div>
+              </div>
+
+              <div class="card col-4">
+                <div class="card-head">
+                  <div><h3>List operations</h3><p>Insert, search and delete directly on the structure</p></div>
+                </div>
+                <form class="viz-form" id="viz-form" novalidate>
+                  <div class="field">
+                    <label for="viz-date">Date</label>
+                    <input type="date" id="viz-date" class="input" />
+                  </div>
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="viz-steps">Steps</label>
+                      <input type="number" id="viz-steps" class="input" min="0" max="200000" placeholder="8000" />
+                    </div>
+                    <div class="field">
+                      <label for="viz-calories">Calories</label>
+                      <input type="number" id="viz-calories" class="input" min="0" max="20000" placeholder="2100" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="viz-sleep">Sleep (hours)</label>
+                    <input type="number" id="viz-sleep" class="input" min="0" max="24" step="0.1" placeholder="7.5" />
+                  </div>
+                  <div class="viz-actions">
+                    <button type="submit" class="btn btn-primary" id="viz-insert"><i data-lucide="plus"></i> Insert node</button>
+                    <button type="button" class="btn btn-soft" id="viz-search"><i data-lucide="search"></i> Search</button>
+                    <button type="button" class="btn btn-danger" id="viz-delete"><i data-lucide="trash-2"></i> Delete</button>
+                  </div>
+                </form>
+                <div class="viz-console">
+                  <div class="console-head"><strong>Operation log</strong><span id="viz-op-count">0 ops</span></div>
+                  <ul id="viz-console-list"><li class="console-empty">Awaiting operations…</li></ul>
+                </div>
+              </div>
+
+              <div class="card col-12">
+                <div class="card-head">
+                  <div><h3>Record nodes</h3><p>Each row corresponds to a node in the live linked list</p></div>
+                </div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead><tr><th>#</th><th>Date</th><th>Steps</th><th>Calories</th><th>Sleep</th><th>Next pointer</th><th class="right">Actions</th></tr></thead>
+                    <tbody id="viz-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+

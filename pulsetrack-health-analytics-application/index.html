@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PulseTrack — Health Metrics & Data Structure Intelligence System built on a Circular Linked List." />
+    <title>PulseTrack · Health Metrics Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "chart.js/auto": "https://esm.sh/chart.js@4.6.1/auto",
+          "lucide": "https://esm.sh/lucide@1.75.0"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230b1613'/%3E%3Cpath d='M5 17h4l3-7 5 13 3-8h7' fill='none' stroke='%2334d399' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div class="boot-splash" id="boot-splash">
+      <div class="boot-mark">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M4 17h5l3.2-8L18 24l3.2-9H28" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <strong>PulseTrack</strong>
+      <span>Rebuilding the circular linked list…</span>
+      <div class="boot-bar"><i></i></div>
+    </div>
+
+    <div class="app-shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 17h5l3.2-8L18 24l3.2-9H28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>PulseTrack</strong>
+            <span>Health Intelligence</span>
+          </div>
+          <button class="icon-btn sidebar-close" id="sidebar-close" aria-label="Close menu"><i data-lucide="x"></i></button>
+        </div>
+
+        <nav class="nav" id="sidebar-nav">
+          <p class="nav-label">Workspace</p>
+          <a class="nav-item" href="#overview" data-nav="overview" data-title="Overview" data-subtitle="Live snapshot of your health metrics">
+            <i data-lucide="layout-dashboard"></i><span>Overview</span>
+          </a>
+          <a class="nav-item" href="#calendar" data-nav="calendar" data-title="Activity Calendar" data-subtitle="Browse your daily records month by month">
+            <i data-lucide="calendar-days"></i><span>Activity Calendar</span>
+          </a>
+          <a class="nav-item" href="#records" data-nav="records" data-title="Health Records" data-subtitle="Add, search, edit and remove records">
+            <i data-lucide="clipboard-list"></i><span>Health Records</span>
+          </a>
+          <a class="nav-item" href="#analytics" data-nav="analytics" data-title="Analytics" data-subtitle="Deep dives across steps, calories and sleep">
+            <i data-lucide="chart-column-big"></i><span>Analytics</span>
+          </a>
+
+          <p class="nav-label">Insights</p>
+          <a class="nav-item" href="#visualizer" data-nav="visualizer" data-title="Data Structure" data-subtitle="How the linked list manages your records">
+            <i data-lucide="git-branch"></i><span>Data Structure</span>
+          </a>
+
+          <p class="nav-label">System</p>
+          <a class="nav-item" href="#export" data-nav="export" data-title="Export &amp; Backup" data-subtitle="Download, back up and restore your data">
+            <i data-lucide="database-backup"></i><span>Export &amp; Backup</span>
+          </a>
+          <a class="nav-item" href="#settings" data-nav="settings" data-title="Settings" data-subtitle="Appearance, storage and data management">
+            <i data-lucide="settings"></i><span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="storage-widget">
+            <div class="storage-head">
+              <span><i data-lucide="hard-drive"></i> SQLite database</span>
+              <strong id="side-storage-pct">0%</strong>
+            </div>
+            <div class="meter"><span id="side-storage-bar" style="width: 0%"></span></div>
+            <p id="side-storage-text">SQLite database</p>
+          </div>
+          <div class="profile-card">
+            <div class="avatar">PT</div>
+            <div class="profile-meta">
+              <strong>Local User</strong>
+              <span id="profile-records">0 records stored</span>
+            </div>
+            <i data-lucide="more-horizontal"></i>
+          </div>
+        </div>
+      </aside>
+      <div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+      <!-- ================= MAIN ================= -->
+      <div class="main-area">
+        <header class="topbar">
+          <button class="icon-btn menu-btn" id="menu-toggle" aria-label="Open menu"><i data-lucide="menu"></i></button>
+          <div class="topbar-heading">
+            <h1 id="page-title">Overview</h1>
+            <p id="page-subtitle">Live snapshot of your health metrics</p>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-date"><i data-lucide="calendar-check"></i><span id="today-label">—</span></div>
+            <button class="icon-btn" id="theme-toggle" title="Toggle theme"><i data-lucide="sun"></i></button>
+            <div class="notif-wrap">
+              <button class="icon-btn has-dot" id="notif-btn" title="Notifications"><i data-lucide="bell"></i></button>
+              <div class="popover" id="notif-panel">
+                <div class="popover-head"><strong>Notifications</strong><button class="link-btn" id="notif-clear">Clear</button></div>
+                <ul class="notif-list" id="notif-list"><li class="notif-empty">No notifications yet</li></ul>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="quick-add"><i data-lucide="plus"></i><span>Quick Add</span></button>
+          </div>
+        </header>
+
+        <main class="content" id="content">
+          {% include 'partials/overview.html' %}
+          {% include 'partials/calendar.html' %}
+          {% include 'partials/records.html' %}
+          {% include 'partials/analytics.html' %}
+          {% include 'partials/visualizer.html' %}
+          {% include 'partials/export.html' %}
+          {% include 'partials/settings.html' %}
+    <!-- ================= MODALS ================= -->
+    <div class="modal-backdrop" id="record-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="record-modal-title">
+        <div class="modal-head">
+          <div>
+            <h3 id="record-modal-title">Add health record</h3>
+            <p id="record-modal-sub">Store a new day in the circular linked list</p>
+          </div>
+          <button class="icon-btn" data-close-modal="record-modal" aria-label="Close"><i data-lucide="x"></i></button>
+        </div>
+        <form id="record-form" class="modal-body" novalidate>
+          <input type="hidden" id="rec-id" />
+          <div class="field">
+            <label for="rec-date">Date <span class="req">*</span></label>
+            <input type="date" id="rec-date" class="input" required />
+            <p class="error-text" id="rec-date-error"></p>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="rec-steps">Steps <span class="req">*</span></label>
+              <input type="number" id="rec-steps" class="input" min="0" max="200000" step="1" placeholder="8500" required />
+              <p class="error-text" id="rec-steps-error"></p>
+            </div>
+            <div class="field">
+              <label for="rec-calories">Calories (kcal) <span class="req">*</span></label>
+              <input type="number" id="rec-calories" class="input" min="0" max="20000" step="1" placeholder="2100" required />
+              <p class="error-text" id="rec-calories-error"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rec-sleep">Sleep (hours) <span class="req">*</span></label>
+            <input type="number" id="rec-sleep" class="input" min="0" max="24" step="0.1" placeholder="7.5" required />
+            <p class="error-text" id="rec-sleep-error"></p>
+          </div>
+          <div class="modal-foot">
+            <button type="button" class="btn btn-ghost" id="rec-clear"><i data-lucide="rotate-ccw"></i> Clear form</button>
+            <div class="modal-foot-right">
+              <button type="button" class="btn btn-ghost" data-close-modal="record-modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="rec-save"><i data-lucide="check"></i> Save record</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="confirm-modal" hidden>
+      <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <div class="modal-head">
+          <div>
+            <h3 id="confirm-title">Are you sure?</h3>
+            <p id="confirm-text">This action cannot be undone.</p>
+          </div>
+          <button class="icon-btn" data-close-modal="confirm-modal" aria-label="Close"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" data-close-modal="confirm-modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirm-accept"><i data-lucide="trash-2"></i> Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>
